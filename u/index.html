@@ -41,7 +41,7 @@
 					<div class="row justify-content-center">
 						<div class="col-md-7">
 							<div class="video-content text-center">
-								<h1 id="domain-header" class="text-white mb-20">Domain</h1>
+								<h1 id="domain-header" class="text-white mb-20">We are sorry to see you go!</h1>
 							</div>
 						</div>
 					</div>
@@ -107,9 +107,11 @@
 
 			// trigger async function
 			// log response or catch error of fetch promise
-			fetchAsync('https://bored7a6d.herokuapp.com/' + params['q'] + '/unsub'
+			fetchAsync('https://bored7a6d.herokuapp.com/' + params['q'] + '/unsub')
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
+
+
 
 		} else {
 			document.getElementById("status-msg").innerHTML = 'This is an invalid request! Please try again later'
