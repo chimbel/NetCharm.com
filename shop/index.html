@@ -41,9 +41,7 @@
 					<div class="row justify-content-center">
 						<div class="col-md-7">
 							<div class="video-content text-center">
-								<h1 id="domain-header" class="text-white mb-20">Domain</h1>
-								<p class="text-white">25% off for a limited time only.</p>
-
+								<h3 id="domain-header" class="text-white mb-20">You are being redirected... Please wait...</h3>
 							</div>
 						</div>
 					</div>
@@ -60,29 +58,8 @@
 
 					<div class="row">
 
-						<div class="col-md-8">
-							<div class="single-blog">
-								<div class="desc text-center">
-									<h3 id="domain-title">Buy Domain Now*!</h3>
-								<div class="subscription">
-										<h2>
-									  <del>
-										<span class="amount">$229</span>
-									  </del>
-									  <ins>
-										<span class="amount">  $169</span>
-									  </ins>
 
-											</h2>
-									<a id="domain-buy" href="#" class="primary-btn"><span>Buy Now*</span><span class="lnr lnr-cart"></span></a>
-									<br>
-									<a id="domain-mo" href="#" class="genric-btn"><span><span class="lnr lnr-tag"></span> Make Offer*</span></a>
-								</div>
-
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
+						<div class="col-md-12">
 							<div class="single-blog">
 								<div class="desc text-center">
 										*You will be redirected to <img class="img-fluid" src="./img/dan.png"> to carry out transactions.
@@ -102,69 +79,15 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1944294-10"></script>
   <script>
-    function getParams() {
-		var vars = {};
-		url = decodeURIComponent(encodeURIComponent(window.location.href));
-    	if (url.indexOf('%^') !== -1) {
-    		// don't track anything, just make sure the links work on website
-    		var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-				if (key == 'q') {
-					vars['dn'] = value.split('%^')[0];
-					opsplit = value.split('%^')[1].split('%%');
-					if (opsplit.length === 1) {
-							vars['op'] = 'visited'
-							vars['id'] =  '5e' + opsplit[0]
-					}
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
 
-					if (opsplit.length === 2 && opsplit[1] == 'u') {
-							vars['op'] = 'unsub'
-							vars['id'] = '5e'+ opsplit[0]
-					}
-				}
-			});
-
-    	} else if (url.indexOf('%%') !== -1) {
-
-			var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-				if (key == 'q') {
-					qsplit = value.split('%%')
-					if (qsplit.length === 3 && qsplit[2] == 'u')
-					{
-							vars['dn'] = qsplit[0]
-							vars['op'] = 'unsub'
-							vars['id'] = qsplit[1]
-
-					}
-
-					if (qsplit.length === 2) {
-							vars['dn'] = qsplit[0]
-							vars['op'] = 'visited'
-							vars['id'] = qsplit[1]
-					}
-				}
-			});
-    	} else {
-
-			var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-				if (key == 'q') {
-					vars['dn'] = value;
-				}
-
-				if (key == 'v') {
-					vars['id'] = value;
-					vars['op'] = 'visited';
-				}
-
-				if (key == 'u') {
-					vars['id'] = value;
-					vars['op'] = 'unsub';
-				}
-
-			});
-		}
-
-        return vars;
-    }
 
 	async function fetchAsync (url) {
 	  // await response of fetch call
@@ -188,46 +111,27 @@
 			}
 
 			if(response.hasOwnProperty('redirect')) {
-				setTimeout(function() {
-					window.location.href = response['redirect'];
-				 }, 15000);
+				window.location.href = response['redirect'];
 			}
 	}
 
-	var params = getParams();
+    var params = getUrlVars();
 	console.log(params)
-	if(params.hasOwnProperty('dn') && params['dn'].indexOf('.com') !== -1) {
+	if (params.hasOwnProperty('q') && params['q'].length === 24) {
+			document.getElementById("status-msg").innerHTML = 'You will be redirected to Dan.com shortly..'
 
-          window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		  gtag('config', 'UA-1944294-10');
+		// trigger async function
+		// log response or catch error of fetch promise
+		fetchAsync('https://bored7a6d.herokuapp.com/' + params['q'] + '/visited')
+			.then(data => handle_response(data))
+			.catch(reason => handle_error(reason))
 
-		document.getElementById("domain-header").innerHTML = params['dn'];
-		document.getElementById("domain-title").innerHTML = "Buy " + params['dn'] + " now!";
-		document.getElementById("domain-buy").href = "https://dan.com/orders/checkout/" + params['dn'].toLowerCase(); + "?utm_campaign=BuyNow&utm_medium=cta&utm_source=dan.com";
-		document.getElementById("domain-mo").href = "https://dan.com/buy-domain/" + params['dn'].toLowerCase(); + "?utm_campaign=BuyNow&utm_medium=cta&utm_source=dan.com";
 
-		if (params.hasOwnProperty('id') && params['id'].length === 24 && params.hasOwnProperty('op')) {
-			// trigger async function
-			// log response or catch error of fetch promise
-			fetchAsync('https://bored7a6d.herokuapp.com/' + params['id'] + '/' + params['op'])
-				.then(data => handle_response(data))
-				.catch(reason => handle_error(reason))
 
-			if (params.hasOwnProperty('op') && params['op'] === 'unsub') {
-				document.getElementById("status-msg").innerHTML = 'We are removing your email to avoid future communication! Please stay on this page while we process your request...'
-			}
-			if (params.hasOwnProperty('op') && params['op'] === 'visited') {
-				document.getElementById("status-msg").innerHTML = 'You will be redirected to Dan.com shortly.....'
-			}
-
-		} else {
-			document.getElementById("status-msg").innerHTML = 'This is an invalid request! Please try again later'
-		}
 	} else {
 		document.getElementById("status-msg").innerHTML = 'This is an invalid request! Please try again later'
 	}
+
 
 	</script>
 
