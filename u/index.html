@@ -103,6 +103,12 @@
    var params = getUrlVars();
 
 		if (params.hasOwnProperty('q') && params['q'].length === 24) {
+
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-1944294-10');
+
 			document.getElementById("status-msg").innerHTML = 'We are removing your email to avoid future communication! Please stay on this page while we process your request...'
 
 			// trigger async function
