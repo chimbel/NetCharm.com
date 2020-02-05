@@ -100,7 +100,7 @@
 							</div>
 						</div>
 
-						
+
 						<div class="col-lg-6">
 							<div id="mc_embed_signup">
 								<form novalidate action="/" method="get" class="subscription relative">
@@ -175,10 +175,10 @@
 
 			if(response.hasOwnProperty('dn')) {
 				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
-				document.getElementById("contact").style.display = "block"
+				document.getElementById("contact").style.display = ""
 			} else {
 				document.getElementById("status-msg").innerHTML = "We did not find any domain related to your query : " + response['q']
-				document.getElementById("search").style.display = "block"
+				document.getElementById("search").style.display = ""
 			}
 	}
 
