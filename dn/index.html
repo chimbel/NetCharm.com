@@ -30,9 +30,9 @@
 							</div>
 							<div class="main-menubar d-flex align-items-center">
 								<nav class="">
-									<a href="index.html">Home</a>
-									<a href="transact.html">Secure Transactions</a>
-									<a href="index.html#about">About Us</a>
+									<a href="../index.html">Home</a>
+									<a href="../transact.html">Secure Transactions</a>
+									<a href="../index.html#about">About Us</a>
 								</nav>
 								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
 							</div>
@@ -123,9 +123,9 @@
 				<div class="container">
 					<div class="footer-content d-flex flex-column align-items-center">
 						<div class="footer-menu">
-							<a href="index.html">Home</a>
-							<a href="transact.html">Secure Transactions</a>
-							<a href="index.html#about">About Us</a>
+							<a href="../index.html">Home</a>
+							<a href="../transact.html">Secure Transactions</a>
+							<a href="../index.html#about">About Us</a>
 						</div>
 						<div style="color:#999" class="footer-social text-center">
 							Powered by
@@ -181,14 +181,21 @@
 
 	var params = getUrlVars();
 	console.log(params)
-	if(params.hasOwnProperty('q') && params['q'].indexOf('.com') !== -1) {
+
+	if(params.hasOwnProperty('q')) {
+
+			if (params['q'].indexOf('.com') !== -1) {
+
+			}
+
+			params['q'] = params['q'] + '.com'
 
           window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		  gtag('config', 'UA-1944294-10');
 
-			fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/dn?=' + params['q'])
+			fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/dn?q=' + params['q'])
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
 		} else {
