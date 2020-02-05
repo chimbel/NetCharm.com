@@ -103,7 +103,7 @@
 					<div class="row justify-content-center">
 						<div class="col-lg-6">
 							<div id="mc_embed_signup">
-								<form target="_blank" novalidate action="dn/" method="get" class="subscription relative">
+								<form target="_blank" novalidate action="/" method="get" class="subscription relative">
 									<input type="text" name="q" placeholder="example.com" onfocus="this.placeholder = ''" onblur="this.placeholder = 'example.com'" required>
 									<button class="primary-btn"><span>Search</span><span class="lnr lnr-arrow-right"></span></button>
 									<div class="info"></div>
@@ -194,7 +194,8 @@
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
 		} else {
-			document.getElementById("status-msg").innerHTML = 'This is an invalid request! Please try again later'
+
+			 window.location.href = window.location.hostname.split('.').slice(-2).join('.');
 		}
 
 
