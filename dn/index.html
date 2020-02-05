@@ -172,11 +172,11 @@
 	function handle_response(response) {
 			console.log(response);
 
-			if(response['status']) {
+			if(response['status'] == true) {
 				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
 				document.getElementById("contact").style.display = "block"
 			} else {
-				document.getElementById("status-msg").innerHTML = "We did not find and domain related to the query " + response['dn']
+				document.getElementById("status-msg").innerHTML = "We did not find any domain related to your query : " + response['dn']
 				document.getElementById("search").style.display = "block"
 			}
 	}
