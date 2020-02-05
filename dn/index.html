@@ -172,7 +172,7 @@
 	function handle_response(response) {
 			console.log(response);
 
-			if(response['status'] === "true") {
+			if(response['status']) {
 				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
 				document.getElementById("contact").style.display = "block"
 			} else {
