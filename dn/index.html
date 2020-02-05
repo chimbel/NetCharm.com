@@ -4,13 +4,6 @@
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="../img/fav.png">
-	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
@@ -180,7 +173,9 @@
 			console.log(response);
 
 			if(response['status']) {
-				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about this domain name!"
+				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
+			} else {
+				document.getElementById("status-msg").innerHTML = response['dn'] + " does not exist in our inventory! please search again below."
 			}
 	}
 
@@ -193,7 +188,7 @@
 		  gtag('js', new Date());
 		  gtag('config', 'UA-1944294-10');
 
-			fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '.com/dn?=' + params['q'])
+			fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/dn?=' + params['q'])
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
 		} else {
