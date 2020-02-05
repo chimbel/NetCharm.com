@@ -176,7 +176,7 @@
 				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
 				document.getElementById("contact").style.display = "block"
 			} else {
-				document.getElementById("status-msg").innerHTML = response['dn'] + " does not exist in our inventory! please search again below."
+				document.getElementById("status-msg").innerHTML = "We did not find and domain related to the query " + response['dn']
 				document.getElementById("search").style.display = "block"
 			}
 	}
@@ -185,13 +185,6 @@
 	console.log(params)
 
 	if(params.hasOwnProperty('q')) {
-
-			if (params['q'].indexOf('.com') !== -1) {
-
-			}
-
-			params['q'] = params['q'] + '.com'
-
           window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
