@@ -42,17 +42,6 @@
 					</div>
 				</div>
 			</header>
-			<div class="banner-area">
-				<div class="container">
-					<div class="row justify-content-center height align-items-center">
-						<div class="col-lg-8">
-							<div class="banner-content text-center">
-								<h1 class="text-uppercase"><span style="color:#fff">Domains</span> <br> & More</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 
             <!-- Start Subscription Area -->
@@ -63,8 +52,10 @@
 					<div class="col-lg-8">
 
 					<div id="status-msg" style="font-weight:bolder" class="alert alert-warning" role="alert">
-						Hi, we are processing your request...
+						Hi, we are processing your request, please wait...
 					</div>
+					</div>
+						<div class="col-lg-4">
 					</div>
 					</div>
 
@@ -74,30 +65,95 @@
 
 								 <form name="contact" class="subscription">
 								  <div class="form-group">
-									 <input type="text" name="name"  class="form-control" id="name" placeholder="Your Name">
+									 <input type="email" name="email"  class="form-control" id="email" placeholder="Your Email*" required>
 								  </div>
+
 								  <div class="form-group">
-									 <input type="email" name="email"  class="form-control" id="email" placeholder="Your Email">
+									 <input type="text" name="name"  class="form-control" id="name" placeholder="Your Name">
 								  </div>
 								  <div class="form-group">
 									 <input type="number" min="0" name="phone" id="phone"  class="form-control" placeholder="Your Phone">
 								  </div>
 
-								  <div class="form-group">
-									 <input type="text" min="0" name="message" id="message"  class="form-control" placeholder="Your message">
-								  </div>
+									 <input type="text" name="domainname" id="domainname" hidden>
+									 <input type="text" name="price" id="price" hidden>
 
+								  <div class="form-group text-center">
+
+									  <h2>
+									  <del>
+										<span id="price-full" class="amount"></span>
+									  </del>
+									  <ins>
+										<span id="price-off" class="amount"></span>
+									  </ins>
+
+											</h2>
+									<button id="buy" class="primary-btn unpos-btn">
+										<span>Buy Now**</span><span class="lnr lnr-cart"></span>
+										</button>
+										<br>
+								 </div>
+
+									 <div class="form-group text-center">
+									  -- or --
+									</div>
 								  <div class="form-group">
-									 <input type="text" min="0" name="domainname" id="domainname" hidden>
-								  </div>
-								  <div class="">
-									 <button  id="contactus" type="submit" class="btn btn-warning">Send mesage</button>
-								  </div>
+
+
+
+									 <input type="number" min="90" name="offer" id="offer" placeholder="Make an offer***" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Make an offer***'">
+
+
+									</div>
+
+									 <div class="form-group text-center">
+										<button id="mo" class="primary-btn unpos-btn">
+										<span>Make Offer**</span><span class="lnr lnr-tag"></span>
+											</button>
+									</div>
 							   </form>
 
+
+
+
+
+						</div>
+
+						<div class="col-md-4">
+							<div class="single-blog">
+<br>
+											*A valid email address is required
+						<br>
+						<br>
+  										 	**A  confirmation email will be sent to your email from DAN.COM on our behalf
+						<br>
+						<br>
+  										 	***A minimum offer of $90 is required
+<br>
+						<br>
+								</div>
+							<div class="single-blog">
+
+								<ul class="unordered-list">
+										<li>We use <img class="img-fluid" src="../img/dan.png"> domain escrow service to ensure smooth transactions for our buyers.</li>
+										<li>Our domain delivery time on average is 12-36 hours after payment has been confirmed</li>
+										<li>We have successfully sold over 1000 domain names in the last 12 months</li>
+										<li>To know more about the process we follow, <a href="../transact.html" target="_blank">read our detailed domain escrow overview</a>.</li>
+										<li>DAN.com has a <a class="color:green" href="https://www.trustpilot.com/review/dan.com" target="_blank">4.5 out of 5 Trustpilot.com rating</a></li>
+
+									</ul>
+
+							</div>
 						</div>
 						</div>
 
+				</div>
+			</section>
+
+
+			<section class="subscription-area">
+				<div class="container">
 					<div id="search" class="row justify-content-center">
 						<div class="col-lg-8">
 
@@ -180,39 +236,71 @@
 			console.log(response);
 
 			if(response.hasOwnProperty('dn')) {
-				document.getElementById("status-msg").innerHTML = "Please fill the form below to enquire about " + response['dn']
+				document.getElementById("status-msg").innerHTML = "You can Buy Now or Make an Offer for " + response['dn']
 				document.getElementById("contact").style.display = ""
 				document.getElementById("domainname").value = response['dn']
+				if(response.hasOwnProperty('price')) {
+					document.getElementById("price").value = response['price']
+					document.getElementById("price-full").innerHTML = '$' + response['price-full']
+					document.getElementById("price-off").innerHTML = '  $' + response['price']
+				}
+				if(response.hasOwnProperty('email')) {
+					document.getElementById("email").value = response['email']
+				}
 			} else {
 				document.getElementById("status-msg").innerHTML = "We did not find any domain related to your query : " + response['q']
 			}
 	}
 
 var $ = jQuery;
-$('#contactus').on('click', function (e) {
-e.preventDefault();
+$('#buy').on('click', function (e) {
+	if (document.getElementById("email").value != "") {
+			e.preventDefault();
+			$.fn.save_lead();
+	}
+});
 
+$('#mo').on('click', function (e) {
 
-	//var posting = $.post( 'http://localhost:5000/contact' , {
-	var posting = $.post( 'https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/contact' , {
+	if (document.getElementById("email").value != "" && document.getElementById("offer").value.length != "0") {
+			e.preventDefault();
+			$.fn.save_lead();
+	}
+});
+
+ $.fn.save_lead = function(){
+	lead = {
 			name: document.getElementById("name").value,
 			email: document.getElementById("email").value,
 			phone: document.getElementById("phone").value,
-			message: document.getElementById("message").value,
 			domainname: document.getElementById("domainname").value,
-	 } );
+			price: document.getElementById("price").value,
+			offer: document.getElementById("offer").value
+	}
+
+	console.log(lead)
+
+	//var posting = $.post( 'https://go.netcharm.com/contact' , lead );
+	var posting = $.post( 'https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/offer' , lead );
 
   // Put the results in a div
-  posting.done(function( data ) {
-  		document.getElementById("status-msg").innerHTML = "Your message has been received, we will get back to you in 2 business days"
-		document.getElementById("contact").style.display = "none"
+	  posting.done(function( data ) {
+
+  		if (data['status'] == 'success') {
+			document.getElementById("status-msg").innerHTML = data['message']
+			document.getElementById("contact").style.display = "none"
+  		} else {
+			document.getElementById("status-msg").innerHTML = data['message']
+  		}
+
+
+
   }).fail(function() {
-  document.getElementById("status-msg").innerHTML = "Our mail server is down right now, please email us at - domains@" + window.location.hostname.split('.').slice(-2).join('.')
-  document.getElementById("contact").style.display = "none"
+	  document.getElementById("status-msg").innerHTML = "Our mail server is down right now, please email us - domains@" + window.location.hostname.split('.').slice(-2).join('.')
+	  document.getElementById("contact").style.display = "none"
   });
 
-});
-
+  }
 
 	var params = getUrlVars();
 	console.log(params)
