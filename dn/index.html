@@ -49,11 +49,11 @@
 				<div class="container">
 
 
-					<div id="status-msg" style="font-weight:bolder" class="alert alert-info" role="alert">
+					<div id="status-msg" class="alert alert-info" role="alert">
 						Howdy! Please wait while we process your request...
 					</div>
 
-					<div class="row justify-content-center">
+					<div class="row justify-content-center" id="contact" style="display:none">
 					<div class="col-lg-8">
 
 
@@ -68,19 +68,12 @@
 							</div>
 
 
-						<div id="successmessage" class="alert alert-success" style="display:none">
-							<span class="lnr lnr-checkmark-circle"></span> We have received your request successfully, a confirmation email will be sent to you from DAN.COM on our behalf to confirm the transaction and proceed with checkout, you will receive this email shortly.
-						</div>
 
+	 <form id="contactform" name="contact" class="subscription">
 
-
-<div id="contactform" class="single-blog" style="display:none">
 <div class="desc text-center">
 			<h3 id="domain-title"></h3>
 </div>
-
-
-								 <form name="contact" class="subscription">
 								  <div class="form-group">
 									 <input type="email" name="email"  class="form-control" id="email" placeholder="Your Email*" required>
 								  </div>
@@ -129,10 +122,8 @@
 										<span>Make Offer**</span> <span class="lnr lnr-tag"></span>
 											</button>
 									</div>
-							   </form>
 
 
-							<div class="single-blog">
 <br>
 											*A valid email address is required
 						<br>
@@ -143,24 +134,20 @@
   										 	***A minimum offer of $90 is required
 <br>
 						<br>
-								</div>
-
-
+							   </form>
 
 
 
 						</div>
-						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-4" id="info">
 							<div class="single-blog">
 
 								<ul class="unordered-list">
-										<li>We use <img class="img-fluid" src="../img/dan.png"> domain escrow service to ensure smooth transactions for our buyers.</li>
+										<li>We process all transactions using <img class="img-fluid" src="../img/dan.png"> domain escrow service to ensure a safe buying experience.</li>
 										<li>Our domain delivery time on average is 12-36 hours after payment has been confirmed</li>
-										<li>We have successfully sold over 1000 domain names in the last 12 months</li>
-										<li>To know more about the process we follow, <a href="../transact.html" target="_blank">read our detailed domain escrow overview</a>.</li>
-										<li>DAN.com has a <a class="color:green" href="https://www.trustpilot.com/review/dan.com" target="_blank">4.5 out of 5 Trustpilot.com rating</a></li>
+										<li>To know more about the process we follow, <a href="../transact.html" target="_blank">read our detailed domain escrow overview</a></li>
+										<li>Our preferred domain escrow service, DAN.com has a <a class="color:green" href="https://www.trustpilot.com/review/dan.com" target="_blank">4.5 out of 5 Trustpilot.com rating</a></li>
 
 									</ul>
 
@@ -249,15 +236,15 @@
 
 	function handle_error(err) {
 			console.log(err);
-			document.getElementById("status-msg").innerHTML = 'Our server is down at the moment! Please try again later'
+			document.getElementById("status-msg").innerHTML = 'Our server is down at the moment! Please try again later.'
 	}
 
 	function handle_response(response) {
 			console.log(response);
 
 			if(response.hasOwnProperty('dn')) {
-				document.getElementById("status-msg").innerHTML = "You can Buy Now or Make an Offer for " + response['dn']
-				document.getElementById("contactform").style.display = ""
+				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy now or make an offer.'
+				document.getElementById("contact").style.display = ""
 				document.getElementById("loading").style.display = "none"
 				document.getElementById("domainname").value = response['dn']
 				document.getElementById("domain-title").innerHTML = 'Buy ' + response['dn']
@@ -271,7 +258,9 @@
 				}
 			} else {
 				document.getElementById("loading").style.display = "none"
-				document.getElementById("status-msg").innerHTML = "We did not find any domain related to your query : " + response['q']
+				document.getElementById("contact").style.display = "none"
+				document.getElementById("status-msg").className = 'alert alert-warning'
+				document.getElementById("status-msg").innerHTML = "We did not find any result that matches your query <b>" + response['q'] + '</b> , you can search again.'
 			}
 	}
 
@@ -319,12 +308,15 @@ $('#mo').on('click', function (e) {
 
   		if (data['status'] == 'done') {
 			document.getElementById("contactform").style.display = "none"
-			document.getElementById("successmessage").style.display = ""
+			document.getElementById("status-msg").className = 'alert alert-success'
+			document.getElementById("info").className = 'col-md-12'
+			document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-checkmark-circle"></span> We have received your request, a confirmation email will be sent to you from DAN.COM to process this transaction.'
   		}
 
   }).fail(function() {
 	  document.getElementById("status-msg").innerHTML = "Our mail server is down right now, please email us - domains@" + window.location.hostname.split('.').slice(-2).join('.')
-	  document.getElementById("contactform").style.display = "none"
+	  document.getElementById("status-msg").className = 'alert alert-error'
+	  document.getElementById("contact").style.display = "none"
   });
 
   }
