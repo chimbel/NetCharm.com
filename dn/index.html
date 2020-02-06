@@ -24,7 +24,7 @@
 	</head>
 	<body>
 		<div class="main-wrapper-first relative">
-			
+
 			<section class="subscription-area">
 				<div class="container">
 
@@ -215,13 +215,10 @@
 	}
 
 	function handle_error(err) {
-			console.log(err);
 			document.getElementById("status-msg").innerHTML = 'Our server is down at the moment! Please try again later.'
 	}
 
 	function handle_response(response) {
-			console.log(response);
-
 			if(response.hasOwnProperty('dn')) {
 				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy now or make an offer.'
 				document.getElementById("contact").style.display = ""
@@ -278,8 +275,6 @@ $('#mo').on('click', function (e) {
 			"offer": document.getElementById("offer").value
 	}
 
-	console.log(lead)
-
 	//var posting = $.post( 'http://localhost:5000/offer' , lead);
 	var posting = $.post( 'https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/offer' , lead );
 
@@ -303,8 +298,6 @@ $('#mo').on('click', function (e) {
   }
 
 	var params = getUrlVars();
-	console.log(params)
-
 	if(params.hasOwnProperty('q')) {
           window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
