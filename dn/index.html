@@ -48,19 +48,36 @@
 			<section class="subscription-area">
 				<div class="container">
 
+
+					<div id="status-msg" style="font-weight:bolder" class="alert alert-info" role="alert">
+						Howdy! Please wait while we process your request...
+					</div>
+
 					<div class="row justify-content-center">
 					<div class="col-lg-8">
 
-					<div id="status-msg" style="font-weight:bolder" class="alert alert-warning" role="alert">
-						Hi, we are processing your request, please wait...
-					</div>
-					</div>
-						<div class="col-lg-4">
-					</div>
-					</div>
 
-					<div id="contact" style="display:none" class="row justify-content-center">
-					<div class="col-lg-8">
+						<div id="loading" class="single-blog">
+							<div class="percentage">
+										<div class="progress">
+											<div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+												Loading...
+											</div>
+										</div>
+									</div>
+							</div>
+
+
+						<div id="successmessage" class="alert alert-success" style="display:none">
+							<span class="lnr lnr-checkmark-circle"></span> We have received your request successfully, a confirmation email will be sent to you from DAN.COM on our behalf to confirm the transaction and proceed with checkout, you will receive this email shortly.
+						</div>
+
+
+
+<div id="contactform" class="single-blog" style="display:none">
+<div class="desc text-center">
+			<h3 id="domain-title"></h3>
+</div>
 
 
 								 <form name="contact" class="subscription">
@@ -89,8 +106,8 @@
 									  </ins>
 
 											</h2>
-									<button id="buy" class="primary-btn unpos-btn">
-										<span>Buy Now**</span><span class="lnr lnr-cart"></span>
+									<button id="buy" class="btn" style="background-color: #955bf9; border-color: #955bf9; color:white">
+										<span>Buy Now**</span> <span class="lnr lnr-cart"></span>
 										</button>
 										<br>
 								 </div>
@@ -102,25 +119,19 @@
 
 
 
-									 <input type="number" min="90" name="offer" id="offer" placeholder="Make an offer***" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Make an offer***'">
+									 <input type="number" min="90" name="offer" id="offer" placeholder="Your best offer***" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Make an offer***'">
 
 
 									</div>
 
 									 <div class="form-group text-center">
-										<button id="mo" class="primary-btn unpos-btn">
-										<span>Make Offer**</span><span class="lnr lnr-tag"></span>
+										<button id="mo" class="btn" style="background-color: #f58e9a; border-color: #f58e9a; color:white">
+										<span>Make Offer**</span> <span class="lnr lnr-tag"></span>
 											</button>
 									</div>
 							   </form>
 
 
-
-
-
-						</div>
-
-						<div class="col-md-4">
 							<div class="single-blog">
 <br>
 											*A valid email address is required
@@ -133,6 +144,15 @@
 <br>
 						<br>
 								</div>
+
+
+
+
+
+						</div>
+						</div>
+
+						<div class="col-md-4">
 							<div class="single-blog">
 
 								<ul class="unordered-list">
@@ -237,8 +257,10 @@
 
 			if(response.hasOwnProperty('dn')) {
 				document.getElementById("status-msg").innerHTML = "You can Buy Now or Make an Offer for " + response['dn']
-				document.getElementById("contact").style.display = ""
+				document.getElementById("contactform").style.display = ""
+				document.getElementById("loading").style.display = "none"
 				document.getElementById("domainname").value = response['dn']
+				document.getElementById("domain-title").innerHTML = 'Buy ' + response['dn']
 				if(response.hasOwnProperty('price')) {
 					document.getElementById("price").value = response['price']
 					document.getElementById("price-full").innerHTML = '$' + response['price-full']
@@ -248,6 +270,7 @@
 					document.getElementById("email").value = response['email']
 				}
 			} else {
+				document.getElementById("loading").style.display = "none"
 				document.getElementById("status-msg").innerHTML = "We did not find any domain related to your query : " + response['q']
 			}
 	}
@@ -262,42 +285,46 @@ $('#buy').on('click', function (e) {
 
 $('#mo').on('click', function (e) {
 
-	if (document.getElementById("email").value != "" && document.getElementById("offer").value.length != "0") {
+	if (document.getElementById("email").value != "") {
+
+		var offer = document.getElementById("offer").value
+		if (offer < 90) {
+			e.preventDefault();
+			alert('A minimum of $90')
+		} else {
 			e.preventDefault();
 			$.fn.save_lead();
+		}
+
 	}
 });
 
  $.fn.save_lead = function(){
 	lead = {
-			name: document.getElementById("name").value,
-			email: document.getElementById("email").value,
-			phone: document.getElementById("phone").value,
-			domainname: document.getElementById("domainname").value,
-			price: document.getElementById("price").value,
-			offer: document.getElementById("offer").value
+			"name": document.getElementById("name").value,
+			"email": document.getElementById("email").value,
+			"phone": document.getElementById("phone").value,
+			"domainname": document.getElementById("domainname").value,
+			"price": document.getElementById("price").value,
+			"offer": document.getElementById("offer").value
 	}
 
 	console.log(lead)
 
-	//var posting = $.post( 'https://go.netcharm.com/contact' , lead );
+	//var posting = $.post( 'http://localhost:5000/offer' , lead);
 	var posting = $.post( 'https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/offer' , lead );
 
   // Put the results in a div
 	  posting.done(function( data ) {
 
-  		if (data['status'] == 'success') {
-			document.getElementById("status-msg").innerHTML = data['message']
-			document.getElementById("contact").style.display = "none"
-  		} else {
-			document.getElementById("status-msg").innerHTML = data['message']
+  		if (data['status'] == 'done') {
+			document.getElementById("contactform").style.display = "none"
+			document.getElementById("successmessage").style.display = ""
   		}
-
-
 
   }).fail(function() {
 	  document.getElementById("status-msg").innerHTML = "Our mail server is down right now, please email us - domains@" + window.location.hostname.split('.').slice(-2).join('.')
-	  document.getElementById("contact").style.display = "none"
+	  document.getElementById("contactform").style.display = "none"
   });
 
   }
