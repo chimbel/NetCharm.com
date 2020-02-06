@@ -24,27 +24,7 @@
 	</head>
 	<body>
 		<div class="main-wrapper-first relative">
-			<header>
-				<div class="container">
-					<div class="header-wrap">
-						<div class="header-top d-flex justify-content-between align-items-center">
-							<div class="logo">
-							</div>
-							<div class="main-menubar d-flex align-items-center">
-								<nav class="hide">
-									<a href="../index.html">Home</a>
-									<a href="../transact.html">Secure Transactions</a>
-									<a href="../index.html#about">About Us</a>
-								</nav>
-								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</header>
-
-
-            <!-- Start Subscription Area -->
+			
 			<section class="subscription-area">
 				<div class="container">
 
@@ -279,7 +259,7 @@ $('#mo').on('click', function (e) {
 		var offer = document.getElementById("offer").value
 		if (offer < 90) {
 			e.preventDefault();
-			alert('A minimum of $90')
+			alert('A minimum offer of $90 is required')
 		} else {
 			e.preventDefault();
 			$.fn.save_lead();
@@ -311,6 +291,7 @@ $('#mo').on('click', function (e) {
 			document.getElementById("status-msg").className = 'alert alert-success'
 			document.getElementById("info").className = 'col-md-12'
 			document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-checkmark-circle"></span> We have received your request, a confirmation email will be sent to you from DAN.COM to process this transaction.'
+  			window.scrollTo(0, 0);
   		}
 
   }).fail(function() {
