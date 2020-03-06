@@ -173,8 +173,8 @@
 		  gtag('js', new Date());
 		  gtag('config', 'UA-1944294-10');
 
-		//fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/search?q=' + params['q'])
-		fetchAsync('http://localhost:5000/search?q=' + params['q'])
+		fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/search?q=' + params['q'])
+		//fetchAsync('http://localhost:5000/search?q=' + params['q'])
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
 	}
