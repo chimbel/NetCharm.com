@@ -33,106 +33,44 @@
 						Howdy! Please wait while we process your request...
 					</div>
 
-					<div class="row justify-content-center" id="contact" style="display:none">
-					<div class="col-lg-8">
+					<div class="row justify-content-center">
+
+						<div class="col-12">
+
+				<div id="contact" class="single-blog text-center" style="display:none">
 
 
-						<div id="loading" class="single-blog">
-							<div class="percentage">
-										<div class="progress">
-											<div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-												Loading...
-											</div>
-										</div>
-									</div>
-							</div>
+								<h3 id="domain-title"></h3>
+					<br>
 
 
+					  <h2>
+					  <del>
+						<span id="price-full" class="amount">$100</span>
+					  </del>
+					  <ins>
+						<span id="price-off" class="amount">$69</span>
+					  </ins>
+					</h2>
+						<a id="cta-link" class="btn" style="background-color: #955bf9; border-color: #955bf9; color:white">
+							<span id="cta-text">Buy Now**</span> <span class="lnr lnr-cart"></span>
+						</a>
 
-	 <form id="contactform" name="contact" class="subscription">
+					<br>
+					<br>
 
-<div class="desc text-center">
-			<h3 id="domain-title"></h3>
-</div>
-								  <div class="form-group">
-									 <input type="email" name="email"  class="form-control" id="email" placeholder="Your Email*" required>
-								  </div>
+									<div class="text-left">
 
-								  <div class="form-group">
-									 <input type="text" name="name"  class="form-control" id="name" placeholder="Your Name">
-								  </div>
-								  <div class="form-group">
-									 <input type="number" min="0" name="phone" id="phone"  class="form-control" placeholder="Your Phone">
-								  </div>
-
-									 <input type="text" name="domainname" id="domainname" hidden>
-									 <input type="text" name="price" id="price" hidden>
-
-								  <div class="form-group text-center">
-
-									  <h2>
-									  <del>
-										<span id="price-full" class="amount"></span>
-									  </del>
-									  <ins>
-										<span id="price-off" class="amount"></span>
-									  </ins>
-
-											</h2>
-									<button id="buy" class="btn" style="background-color: #955bf9; border-color: #955bf9; color:white">
-										<span>Buy Now**</span> <span class="lnr lnr-cart"></span>
-										</button>
-										<br>
-								 </div>
-
-									 <div class="form-group text-center">
-									  -- or --
-									</div>
-								  <div class="form-group">
-
-
-
-									 <input type="number" min="90" name="offer" id="offer" placeholder="Your best offer***" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Make an offer***'">
-
-
-									</div>
-
-									 <div class="form-group text-center">
-										<button id="mo" class="btn" style="background-color: #f58e9a; border-color: #f58e9a; color:white">
-										<span>Make Offer**</span> <span class="lnr lnr-tag"></span>
-											</button>
-									</div>
-
-
-<br>
-											*A valid email address is required
-						<br>
-						<br>
-  										 	**A  confirmation email will be sent to your email from DAN.COM on our behalf
-						<br>
-						<br>
-  										 	***A minimum offer of $90 is required
-<br>
-						<br>
-							   </form>
-
-
-
-						</div>
-
-						<div class="col-md-4" id="info">
-							<div class="single-blog">
-
-								<ul class="unordered-list">
+									<ul class="unordered-list">
 										<li>We process transactions using <img class="img-fluid" src="../img/dan.png"> domain escrow to ensure a safe buying experience.</li>
 										<li>Our domain delivery time on average is 12-36 hours after payment has been confirmed</li>
 										<li>To know more about the process we follow, <a href="../transact.html" target="_blank">read our detailed domain escrow overview</a></li>
 										<li>Our preferred domain escrow service, DAN.com has a <a class="color:green" href="https://www.trustpilot.com/review/dan.com" target="_blank">4.5 out of 5 Trustpilot.com rating</a></li>
-
 									</ul>
+									</div>
 
-							</div>
 						</div>
+
 						</div>
 
 				</div>
@@ -178,10 +116,6 @@
 							<a href="../index.html#about">About Us</a>
 						</div>
 						<div style="color:#999" class="footer-social text-center">
-							Powered by
-							<br>
-							<a href="https://chimbel.com" target="_blank">CHIMBEL</a>
-							<br>
 							t: +1650-2397232  a: #108, 650 Castro St, Mountain View, CA
 						</div>
 					</div>
@@ -220,82 +154,17 @@
 
 	function handle_response(response) {
 			if(response.hasOwnProperty('dn')) {
-				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy now or make an offer.'
 				document.getElementById("contact").style.display = ""
-				document.getElementById("loading").style.display = "none"
-				document.getElementById("domainname").value = response['dn']
 				document.getElementById("domain-title").innerHTML = 'Buy ' + response['dn']
-				if(response.hasOwnProperty('price')) {
-					document.getElementById("price").value = response['price']
-					document.getElementById("price-full").innerHTML = '$' + response['price-full']
-					document.getElementById("price-off").innerHTML = '  $' + response['price']
-				}
-				if(response.hasOwnProperty('email')) {
-					document.getElementById("email").value = response['email']
-				}
+				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
+				document.getElementById("cta-text").innerHTML = response['cta-text']
+				document.getElementById("cta-link").setAttribute("href", response['cta-link'])
 			} else {
-				document.getElementById("loading").style.display = "none"
 				document.getElementById("contact").style.display = "none"
 				document.getElementById("status-msg").className = 'alert alert-warning'
 				document.getElementById("status-msg").innerHTML = "We did not find any result that matches your query <b>" + response['q'] + '</b> , you can search again.'
 			}
 	}
-
-var $ = jQuery;
-$('#buy').on('click', function (e) {
-	if (document.getElementById("email").value != "") {
-			e.preventDefault();
-			$.fn.save_lead();
-	}
-});
-
-$('#mo').on('click', function (e) {
-
-	if (document.getElementById("email").value != "") {
-
-		var offer = document.getElementById("offer").value
-		if (offer < 90) {
-			e.preventDefault();
-			alert('A minimum offer of $90 is required')
-		} else {
-			e.preventDefault();
-			$.fn.save_lead();
-		}
-
-	}
-});
-
- $.fn.save_lead = function(){
-	lead = {
-			"name": document.getElementById("name").value,
-			"email": document.getElementById("email").value,
-			"phone": document.getElementById("phone").value,
-			"domainname": document.getElementById("domainname").value,
-			"price": document.getElementById("price").value,
-			"offer": document.getElementById("offer").value
-	}
-
-	//var posting = $.post( 'http://localhost:5000/offer' , lead);
-	var posting = $.post( 'https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/offer' , lead );
-
-  // Put the results in a div
-	  posting.done(function( data ) {
-
-  		if (data['status'] == 'done') {
-			document.getElementById("contactform").style.display = "none"
-			document.getElementById("status-msg").className = 'alert alert-success'
-			document.getElementById("info").className = 'col-md-12'
-			document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-checkmark-circle"></span> We have received your request, a confirmation email will be sent to you from DAN.COM to process this transaction.'
-  			window.scrollTo(0, 0);
-  		}
-
-  }).fail(function() {
-	  document.getElementById("status-msg").innerHTML = "Our mail server is down right now, please email us - domains@" + window.location.hostname.split('.').slice(-2).join('.')
-	  document.getElementById("status-msg").className = 'alert alert-error'
-	  document.getElementById("contact").style.display = "none"
-  });
-
-  }
 
 	var params = getUrlVars();
 	if(params.hasOwnProperty('q')) {
@@ -304,8 +173,8 @@ $('#mo').on('click', function (e) {
 		  gtag('js', new Date());
 		  gtag('config', 'UA-1944294-10');
 
-		fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/dn?q=' + params['q'])
-		//fetchAsync('http://localhost:5000/dn?q=' + params['q'])
+		//fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/search?q=' + params['q'])
+		fetchAsync('http://localhost:5000/search?q=' + params['q'])
 				.then(data => handle_response(data))
 				.catch(reason => handle_error(reason))
 	}
