@@ -47,7 +47,7 @@
 					  </del>
 						<span  style="font-size: 2em; font-weight: 400;" class="text-white">$69</span>
 
-							<a href="#" class="genric-btn primary circle arrow"><span class="lnr lnr-cart"></span>
+							<a id="cta-link" href="#" class="genric-btn primary circle arrow"><span class="lnr lnr-cart"></span>
 								<span id="cta-text">Buy Now</span>*
 							<span class="lnr lnr-arrow-right"></span></a>
 
@@ -182,6 +182,7 @@
 	}
 
 	function handle_error(err) {
+			console.log(err)
 			document.getElementById("status-msg").innerHTML = 'Our server is down at the moment! Please try again later.'
 			document.getElementById("status-msg").className = 'alert alert-danger'
 	}
