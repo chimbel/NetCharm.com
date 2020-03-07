@@ -113,8 +113,8 @@
 	}
 
 	function handle_response(response) {
-			if(response.hasOwnProperty('dn')) {
-				window.location.replace("http://dan.com/buy-domain/" + response['dn']);
+			if(response.hasOwnProperty('redirect')) {
+				window.location.replace(response['response']);
 			} else {
 				location.reload();
 			}
