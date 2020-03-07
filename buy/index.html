@@ -114,7 +114,7 @@
 
 	function handle_response(response) {
 			if(response.hasOwnProperty('redirect')) {
-				window.location.replace(response['response']);
+				window.location.replace(response['redirect']);
 			} else {
 				location.reload();
 			}
