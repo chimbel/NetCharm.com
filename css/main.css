@@ -741,7 +741,10 @@ td, th {
   font-size: 24px;
 }
 
-b, i, sup, sub, u, del {
+del {
+  color: lightgrey;
+}
+b, i, sup, sub, u {
   color: #00ab9c;
 }
 
