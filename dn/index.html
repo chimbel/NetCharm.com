@@ -1,114 +1,19 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-<head>
-  <script>
-	function getUrlVars() {
-		var vars = {};
-		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
-		function(m,key,value) {
-		  vars[key] = value;
-		});
-		return vars;
-  	}
-
-	async function fetchAsync (url) {
-	  // await response of fetch call
-	  let response = await fetch(url);
-	  // only proceed once promise is resolved
-	  let data = await response.json();
-	  // only proceed once second promise is resolved
-	  return data;
-	}
-
-	function handle_error(err) {
-			document.getElementById("status-msg").innerHTML = 'Our server is down at the moment! Please try again later.'
-	}
-
-	function handle_response(response) {
-			if(response.hasOwnProperty('redirect')) {
-				window.location.replace(response['redirect']);
-			} else {
-				location.reload();
-			}
-	}
-
-	var params = getUrlVars();
-	if(params.hasOwnProperty('q')) {
-		fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/dn?q=' + params['q'])
-		//fetchAsync('https://go.netcharm.com/dn?q=' + params['q'])
-		//fetchAsync('http://localhost:5000/go?q=' + params['q'])
-
-				.then(data => handle_response(data))
-				.catch(reason => handle_error(reason))
-	}
-	</script>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta charset="UTF-8">
-	<title>Domain Names | Premium Domain Names | Short Domains</title>
-		<link rel="stylesheet" href="../css/bootstrap.css">
-		<link rel="stylesheet" href="../css/main.css">
-	</head>
+<html>
+  <head>
+	    <script>
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+   var params = getUrlVars();
+   window.location.href = window.location.href.replace('/dn/','/domain/');
+  </script>
+  </head>
 	<body>
-		<div class="main-wrapper-first relative">
-
-			<section class="sample-text-area">
-				<div class="container">
-
-
-					<div id="contact" class="row justify-content-center">
-
-
-
-					<div class="col-md-12">
-
-						<div class="single-blog text-center">
-
-
-
-							<p>
-							<b>You are being redirected to DAN.com</b> to carry out this transaction...
-							</p>
-								<p>
-							Please refresh this page if you aren't redirected in 10 seconds..
-							</p>
-							<img class="img-fluid" src="../img/loading.gif"/>
-					</div>
-						</div>
-
-
-
-				</div>
-
-
-
-
-				</div>
-			</section>
-
-
-
-		</div>
-		<div class="main-wrapper">
-
-
-
-			<!-- Start footer Area -->
-			<footer class="footer-area">
-				<div class="container">
-					<div class="footer-content d-flex flex-column align-items-center">
-						<div class="footer-menu">
-							<a href="../index.html">Home</a>
-							<a href="../transact.html">Secure Transactions</a>
-							<a href="../index.html#about">About Us</a>
-						</div>
-						<div style="color:#999" class="footer-social text-center">
-							t: +1650-2397232  a: #108, 650 Castro St, Mountain View, CA
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!-- End footer Area -->
-		</div>
+	You are being redirected...
 	</body>
 </html>
