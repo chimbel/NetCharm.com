@@ -43,7 +43,7 @@
 						<span  style="font-size: 2em;font-weight: 400;color: orange;" >$69</span>
 <p>
 							<a id="cta-link" href="#" class="genric-btn primary circle arrow"><span class="lnr lnr-cart"></span>
-								<span id="cta-text">Buy Now</span>*
+								<span id="cta-text">Buy Now</span>
 							<span class="lnr lnr-arrow-right"></span></a>
 
 
@@ -54,8 +54,7 @@
 					<div class="col-lg-7">
 						<div class="story-content">
 							<ul class="unordered-list">
-										<li>*You will be redirected to DAN.com to buy this domain</li>
-										<li>We use DAN.com domain escrow service to provide safe transactions</li>
+										<li>We use DAN.com domain escrow ensuring safe transactions</li>
 										<li>DAN.com accepts global payments & has a passionate support team</li>
 										<li>Domain delivery time is 12 - 48 hours after payment confirmation</li>
 							</ul>
@@ -152,13 +151,13 @@
 	function handle_response(response) {
 			if(response.hasOwnProperty('dn')) {
 				document.getElementById("contact").style.display = ""
-				document.getElementById("domain-title").innerHTML = 'Buy ' + response['dn']
+				document.getElementById("domain-title").innerHTML = response['dn']
 				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
 				if(response.hasOwnProperty('dan')) {
 					document.getElementById("cta-text").innerHTML = response['cta-text']
 					document.getElementById("cta-link").setAttribute("href", response['cta-link'])
 					document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
-					document.getElementById("cta-text").innerHTML = "Visit <b>" + response['dn'] + '</b> on DAN.com'
+					document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
 				} else {
 					window.location.reload();
 				}
