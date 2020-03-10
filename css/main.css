@@ -1911,12 +1911,11 @@ nav a:hover {
 .main-wrapper-first {
   width: 68.75%;
   margin: 0 auto;
-  margin-top: 6rem;
 }
 
 @media (min-width: 1200px) {
   .main-wrapper-first {
-    width: 75%;
+    width: 100%;
   }
 }
 
@@ -1940,7 +1939,7 @@ nav a:hover {
 
 @media (min-width: 1200px) {
   .main-wrapper {
-    width: 75%;
+    width: 100%;
   }
 }
 
@@ -2043,9 +2042,9 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
-  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
-  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #00ab9c 0%, #fbe44c 100%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, #00ab9c 0%, #fbe44c 100%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #00ab9c 0%, #fbe44c 100%);
   top: 0;
   left: 0;
   z-index: -1;
@@ -2250,9 +2249,9 @@ nav a:hover {
 }
 
 .video-area .overlay-bg {
-  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
-  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
-  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #7539dd 0%, #7034db 100%);
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, #000 0%, #006466 100%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, #000 0%, #006466 100%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, #000 0%, #006466 100%);
   opacity: .8;
 }
 
@@ -2430,7 +2429,6 @@ nav a:hover {
 .footer-area {
   background: #006466;
   padding: 100px 0;
-  margin-bottom: 6rem;
 }
 
 @media (max-width: 767px) {
