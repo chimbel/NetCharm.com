@@ -59,7 +59,9 @@
 										<li>DAN.com accepts global payments & has a passionate support team</li>
 										<li>Domain delivery time is 12 - 48 hours after payment confirmation</li>
 							</ul>
-								<a class="genric-btn link radius" id="cta-link2" href="#">View on DAN.com</a>
+								<a class="genric-btn link radius" id="cta-link2" href="#">
+									<span id="cta-text2">View on DAN.com</span>
+								</a>
 
 						</div>
 					</div>
@@ -156,6 +158,7 @@
 					document.getElementById("cta-text").innerHTML = response['cta-text']
 					document.getElementById("cta-link").setAttribute("href", response['cta-link'])
 					document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
+					document.getElementById("cta-text").innerHTML = "Visit <b>" + response['dn'] + '</b> on DAN.com'
 				} else {
 					window.location.reload();
 				}
