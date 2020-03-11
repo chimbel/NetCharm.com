@@ -1918,7 +1918,7 @@ nav a:hover {
 
 @media (min-width: 1200px) {
   .main-wrapper-first {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -1942,7 +1942,7 @@ nav a:hover {
 
 @media (min-width: 1200px) {
   .main-wrapper {
-    width: 100%;
+    width: 90%;
   }
 }
 
