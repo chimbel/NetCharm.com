@@ -1959,9 +1959,9 @@ nav a:hover {
 }
 
 .p1-gradient-bg, body {
-  background-image: -moz-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
-  background-image: -webkit-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
-  background-image: -ms-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
+  background-image: -moz-linear-gradient(0deg, #DE6262 0%, #FFB88C 100%);
+  background-image: -webkit-linear-gradient(0deg, #DE6262 0%, #FFB88C 100%);
+  background-image: -ms-linear-gradient(0deg, #DE6262 0%, #FFB88C 100%);
 }
 
 .p2-gradient-bg, .sec-btn:after, .primary-btn:after, .ilene-tabs .nav-item:hover, .ilene-tabs .nav-item.active {
