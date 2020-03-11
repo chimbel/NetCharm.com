@@ -1914,6 +1914,7 @@ nav a:hover {
 .main-wrapper-first {
   width: 68.75%;
   margin: 0 auto;
+  margin-top: 3rem;
 }
 
 @media (min-width: 1200px) {
@@ -1930,7 +1931,6 @@ nav a:hover {
 
 @media (max-width: 767px) {
   .main-wrapper-first {
-    margin-top: 3rem;
     width: 97%;
   }
 }
@@ -1959,9 +1959,9 @@ nav a:hover {
 }
 
 .p1-gradient-bg, body {
-  background-image: -moz-linear-gradient(0deg, #00ab9c 0%, #fbe44c 100%);
-  background-image: -webkit-linear-gradient(0deg, #00ab9c 0%, #fbe44c 100%);
-  background-image: -ms-linear-gradient(0deg, #00ab9c 0%, #fbe44c 100%);
+  background-image: -moz-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
+  background-image: -webkit-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
+  background-image: -ms-linear-gradient(0deg, #06beb6 0%, #48b1bf 100%);
 }
 
 .p2-gradient-bg, .sec-btn:after, .primary-btn:after, .ilene-tabs .nav-item:hover, .ilene-tabs .nav-item.active {
@@ -2431,14 +2431,9 @@ nav a:hover {
 }
 
 .footer-area {
+  margin-bottom: 3rem;
   background: #006466;
   padding: 100px 0;
-}
-
-@media (max-width: 767px) {
-  .footer-area {
-    margin-bottom: 3rem;
-  }
 }
 
 .footer-area .footer-menu a {
