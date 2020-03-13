@@ -168,8 +168,19 @@
 					document.getElementById("cta-link").setAttribute("href", response['cta-link'])
 					document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
 					document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
+
+
+
+
 				} else {
 					window.location.reload();
+				}
+
+				if(params.hasOwnProperty('q')) {
+						  window.dataLayer = window.dataLayer || [];
+						  function gtag(){dataLayer.push(arguments);}
+						  gtag('js', new Date());
+						  gtag('config', 'UA-1944294-8');
 				}
 			} else {
 				document.getElementById("contact").style.display = "none"
@@ -179,18 +190,10 @@
 	}
 
 	var params = getUrlVars();
-	if(params.hasOwnProperty('q')) {
-
-          window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		  gtag('config', 'UA-1944294-8');
-
-		fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/domain?q=' + params['q'])
-		//fetchAsync('http://localhost:5000/domain?q=' + params['q'])
-				.then(data => handle_response(data))
-				.catch(reason => handle_error(reason))
-	}
+	fetchAsync('https://go.' +  window.location.hostname.split('.').slice(-2).join('.') + '/domain?q=' + params['q'])
+	//fetchAsync('http://localhost:5000/domain?q=' + params['q'])
+			.then(data => handle_response(data))
+			.catch(reason => handle_error(reason))
 	</script>
 
 
