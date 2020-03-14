@@ -95,6 +95,7 @@
 							<div id="mc_embed_signup">
 								<form novalidate action="" method="get" class="subscription relative">
 									<input type="text" name="q" placeholder="Enter a domain name eg ILoveChicago.com" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter a domain name eg ILoveChicago.com'" required>
+									<input type="hidden" name="src" value="search">
 									<button class="primary-btn"><span>Search</span><span class="lnr lnr-arrow-right"></span></button>
 									<div class="info"></div>
 								</form>
@@ -164,10 +165,15 @@
 				document.getElementById("domain-title").innerHTML = response['dn']
 				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
 				if(response.hasOwnProperty('dan')) {
-					document.getElementById("cta-text").innerHTML = response['cta-text']
-					document.getElementById("cta-link").setAttribute("href", response['cta-link'])
-					document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
-					document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
+
+					if(response.hasOwnProperty('src')) {
+						document.getElementById("cta-text").innerHTML = response['cta-text']
+						document.getElementById("cta-link").setAttribute("href", response['cta-link'])
+						document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
+						document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
+					} else {
+						window.location.replace(response['cta-link2']);
+					}
 
 				} else {
 					window.location.reload();
