@@ -165,8 +165,8 @@
 				document.getElementById("domain-title").innerHTML = response['dn']
 				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
 				if(response.hasOwnProperty('dan')) {
-
-					if(response.hasOwnProperty('src')) {
+					var params = getUrlVars();
+					if(params.hasOwnProperty('src')) {
 						document.getElementById("cta-text").innerHTML = response['cta-text']
 						document.getElementById("cta-link").setAttribute("href", response['cta-link'])
 						document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
