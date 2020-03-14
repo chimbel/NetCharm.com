@@ -162,7 +162,7 @@
 	function handle_response(response) {
 			if(response.hasOwnProperty('dn')) {
 				if(response.hasOwnProperty('dan')) {
-				
+
 					var params = getUrlVars();
 					if(params.hasOwnProperty('src')) {
 						document.getElementById("contact").style.display = ""
@@ -186,7 +186,6 @@
 				  gtag('config', 'UA-1944294-8');
 
 			} else {
-				document.getElementById("contact").style.display = "none"
 				document.getElementById("status-msg").className = 'alert alert-warning'
 				document.getElementById("status-msg").innerHTML = "We did not find any result that matches your query <b>" + response['q'] + '</b> , you can search again.'
 			}
