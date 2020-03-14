@@ -173,7 +173,7 @@
 						document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
 						document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
 					} else {
-						window.location.replace(response['cta-link2']);
+						setTimeout(function(){window.location=response['cta-link2'];}, 1500)
 					}
 
 				} else {
