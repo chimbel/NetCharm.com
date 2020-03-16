@@ -1,17 +1,8 @@
 <html>
   <head>
-	    <script>
-  function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
-    function(m,key,value) {
-      vars[key] = value;
-    });
-    return vars;
-  }
-   var params = getUrlVars();
-   window.location.href = window.location.href.replace('/shop/','/domain/');
-  </script>
+<script>
+   window.location.href = 'https://tantra.me/domain/' + document.location.search;
+</script>
   </head>
 	<body>
 	You are being redirected...
