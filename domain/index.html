@@ -69,11 +69,6 @@
 						</div>
 					</div>
 
-					<div class="col-12 text-center">
-								<a class="genric-btn text-center" id="cta-link2" href="#">
-									<span class="lnr lnr-link"></span> <span id="cta-text2">View on DAN.com</span>
-								</a>
-					</div>
 
 				</div>
 			</div>
@@ -95,7 +90,6 @@
 							<div id="mc_embed_signup">
 								<form novalidate action="" method="get" class="subscription relative">
 									<input type="text" name="q" placeholder="Enter a domain name eg ILoveChicago.com" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter a domain name eg ILoveChicago.com'" required>
-									<input type="hidden" name="src" value="search">
 									<button class="primary-btn"><span>Search</span><span class="lnr lnr-arrow-right"></span></button>
 									<div class="info"></div>
 								</form>
@@ -162,20 +156,10 @@
 	function handle_response(response) {
 			if(response.hasOwnProperty('dn')) {
 				if(response.hasOwnProperty('dan')) {
-
 					var params = getUrlVars();
-					if(params.hasOwnProperty('src')) {
-						document.getElementById("contact").style.display = ""
-						document.getElementById("domain-title").innerHTML = response['dn']
-						document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
-						document.getElementById("cta-text").innerHTML = response['cta-text']
-						document.getElementById("cta-link").setAttribute("href", response['cta-link'])
-						document.getElementById("cta-link2").setAttribute("href", response['cta-link2'])
-						document.getElementById("cta-text2").innerHTML = "Visit " + response['dn'] + ' on DAN.com'
-					} else {
-						setTimeout(function(){window.location=response['cta-link2'];}, 1500)
-					}
-
+					document.getElementById("contact").style.display = ""
+					document.getElementById("domain-title").innerHTML = response['dn']
+					document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
 				} else {
 					window.location.reload();
 				}
