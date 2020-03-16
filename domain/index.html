@@ -155,14 +155,10 @@
 
 	function handle_response(response) {
 			if(response.hasOwnProperty('dn')) {
-				if(response.hasOwnProperty('dan')) {
-					var params = getUrlVars();
-					document.getElementById("contact").style.display = ""
-					document.getElementById("domain-title").innerHTML = response['dn']
-					document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
-				} else {
-					window.location.reload();
-				}
+				var params = getUrlVars();
+				document.getElementById("contact").style.display = ""
+				document.getElementById("domain-title").innerHTML = response['dn']
+				document.getElementById("status-msg").innerHTML = "The domain name <b>" + response['dn'] + '</b> is for sale, you can buy it now for $69 only.'
 
 				  window.dataLayer = window.dataLayer || [];
 				  function gtag(){dataLayer.push(arguments);}
